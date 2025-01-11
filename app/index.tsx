@@ -1,19 +1,20 @@
-import { Stack, Link } from 'expo-router';
-
+import { Montserrat_400Regular, Montserrat_700Bold, useFonts } from '@expo-google-fonts/montserrat';
 import { Button } from '~/components/Button';
-import { Container } from '~/components/Container';
-import { ScreenContent } from '~/components/ScreenContent';
+import { Text, View } from 'react-native';
 
 export default function Home() {
+  const [fontsLoaded] = useFonts({
+    Montserrat_Regular: Montserrat_400Regular,
+    Montserrat_Bold: Montserrat_700Bold,
+  });
+
   return (
     <>
-      <Stack.Screen options={{ title: 'Home' }} />
-      <Container>
-        <ScreenContent path="app/index.tsx" title="Home" />
-        <Link href={{ pathname: '/details', params: { name: 'Dan' } }} asChild>
-          <Button title="Show Details" />
-        </Link>
-      </Container>
+      <View className="bg-neutral-light flex flex-1 flex-col items-center justify-center gap-2">
+        <Button label="Um texto um pouco maiorrr" intent="primary" loading />
+        <Button label="Um texto um pouco maiorrr" intent="secondary" loading />
+        <Button label="Um texto um pouco maiorrr" intent="primary" disabled loading />
+      </View>
     </>
   );
 }
