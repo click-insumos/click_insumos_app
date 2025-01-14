@@ -7,6 +7,7 @@ import {
   View,
 } from 'react-native';
 import { cva } from 'class-variance-authority';
+import Ionicons from '@expo/vector-icons/Feather';
 
 type ButtonProps = {
   label: string;
@@ -14,6 +15,8 @@ type ButtonProps = {
   size?: 'sm' | 'md' | 'xl';
   disabled?: boolean;
   loading?: boolean;
+  iconLeft?: IconName;
+  iconRight?: IconName;
 } & TouchableOpacityProps;
 
 export const Button = forwardRef<View, ButtonProps>(
@@ -24,6 +27,8 @@ export const Button = forwardRef<View, ButtonProps>(
       size = 'md',
       disabled = false,
       loading = false,
+      iconLeft = undefined,
+      iconRight = undefined,
       ...touchableProps
     },
     ref
@@ -89,7 +94,11 @@ export const Button = forwardRef<View, ButtonProps>(
         {loading ? (
           <ActivityIndicator color={indicatorColor} />
         ) : (
-          <Text className={textClasses({ intent, size, disabled })}>{label}</Text>
+          <View className="flex flex-row items-center justify-center gap-3">
+            {iconLeft && <Ionicons name={iconLeft} color={indicatorColor} />}
+            <Text className={textClasses({ intent, size, disabled })}>{label}</Text>
+            {iconRight && <Ionicons name={iconRight} color={indicatorColor} />}
+          </View>
         )}
       </TouchableOpacity>
     );
