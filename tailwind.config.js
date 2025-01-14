@@ -6,6 +6,7 @@ module.exports = {
     extend: {
       fontFamily: {
         sans: ['Montserrat_Regular', 'Montserrat_Bold', 'sans-serif'], // Montserrat como padrão para sans
+        bold: ['Montserrat_Bold', 'sans-serif'],
       },
       colors: {
         'primary-blue': '#3c5597', // Azul principal

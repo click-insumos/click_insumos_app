@@ -23,7 +23,11 @@ export const Input = ({
     <View className="flex w-full flex-col gap-1">
       <View className="flex w-full flex-row items-center justify-around gap-3 rounded-full border border-gray-400 px-6 py-3 ">
         {iconLeft && <FeatherIcon name={iconLeft} size={16} color={'#808080'} />}
-        <TextInput className="w-full px-0 py-0 font-sans" {...inputProps} />
+        <TextInput
+          {...inputProps}
+          style={{ fontFamily: 'Montserrat_Regular' }}
+          className="w-full px-0 py-0 font-sans"
+        />
         {iconRight && <FeatherIcon name={iconRight} size={16} color={'#808080'} />}
       </View>
       {errorMessage && (
