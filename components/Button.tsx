@@ -17,9 +17,10 @@ type ButtonProps = {
   loading?: boolean;
   iconLeft?: IconName;
   iconRight?: IconName;
+  stretch?: boolean;
 } & TouchableOpacityProps;
 
-export const Button = forwardRef<View, ButtonProps>(
+export const CIButton = forwardRef<View, ButtonProps>(
   (
     {
       label,
@@ -29,6 +30,7 @@ export const Button = forwardRef<View, ButtonProps>(
       loading = false,
       iconLeft = undefined,
       iconRight = undefined,
+      stretch = false,
       ...touchableProps
     },
     ref
@@ -50,6 +52,10 @@ export const Button = forwardRef<View, ButtonProps>(
           },
           disabled: {
             true: ['bg-gray-100', 'border-gray-300', 'opacity-50'],
+            false: [],
+          },
+          stretch: {
+            true: ['!w-full'],
             false: [],
           },
         },
@@ -90,13 +96,17 @@ export const Button = forwardRef<View, ButtonProps>(
         activeOpacity={0.7}
         disabled={disabled || loading}
         {...touchableProps}
-        className={buttonClasses({ intent, size, disabled })}>
+        className={buttonClasses({ intent, size, disabled, stretch })}>
         {loading ? (
           <ActivityIndicator color={indicatorColor} />
         ) : (
           <View className="flex flex-row items-center justify-center gap-3">
             {iconLeft && <Ionicons name={iconLeft} color={indicatorColor} />}
-            <Text className={textClasses({ intent, size, disabled })}>{label}</Text>
+            <Text
+              style={{ fontFamily: 'Montserrat_Regular' }}
+              className={textClasses({ intent, size, disabled })}>
+              {label}
+            </Text>
             {iconRight && <Ionicons name={iconRight} color={indicatorColor} />}
           </View>
         )}

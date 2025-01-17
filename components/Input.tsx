@@ -8,15 +8,17 @@ type InputProps = {
   iconLeft?: IconName;
   iconRight?: IconName;
   errorMessage?: string;
+  stretch?: boolean;
 } & TextInputProps;
 
-export const Input = ({
+export const CIInput = ({
   size = 'md',
   disabled = false,
   loading = false,
   iconLeft = undefined,
   iconRight = undefined,
   errorMessage = undefined,
+  stretch = false,
   ...inputProps
 }: InputProps) => {
   return (
